@@ -8,7 +8,7 @@ SystemTestsPassed is a web-based data analytics solution to help users find the 
 - Pandas
 - Python 
 
-## Requirements and Installation
+# Requirements and Installation
 
 Streamlit is required to open the tool in a web browser.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install streamlit.
