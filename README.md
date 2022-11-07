@@ -36,4 +36,5 @@ You can now view your Streamlit app in your browser.
 
   Local URL: http://localhost:8501
   Network URL: (in this format) http://xxx.xxx.xxx.xxx:8501 
+  
 ```
