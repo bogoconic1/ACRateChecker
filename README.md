@@ -53,6 +53,6 @@ A **sample** on how to figure out the question number will be shown
 User enters a question (in this case 1750A) and **press ENTER**
 ![image](https://user-images.githubusercontent.com/100673850/200307566-c8c8632c-6238-45d5-ae3a-7bf60cb586ac.png)
 
-After approximately 10-15 seconds, output is shown
+After approximately **10-15 seconds**, output is shown
 ![image](https://user-images.githubusercontent.com/100673850/200307659-8159d8be-0b5a-4bee-8e54-0e922686f128.png)
 
