@@ -54,7 +54,10 @@ try:
     user_attempted = len(set([x[0]["handle"] for x in list(attempted_df["author_members"])]))
     total_solved = len(solved_df)
     total_attempted = len(attempted_df)
-    difficulty = list(contest_df[(contest_df["problem_index"] == index)]['problem.rating'])[0]
+    try:
+        difficulty = list(contest_df[(contest_df["problem_index"] == index)]['problem.rating'])[0]
+    except:
+        difficulty = "Not released yet"
     acceptance_rate = round((total_solved / total_attempted) * 100)
     st.write("=============== During Contest ===============")
     st.write(f"User Accepted: {user_solved:,}")
@@ -67,3 +70,4 @@ except AssertionError:
     pass
 except IndexError:
     st.write("Question number does not exist. Please re-check input")
+    
