@@ -1,0 +1,8 @@
+pandas
+matplotlib
+numpy
+requests
+pandasql
+json
+collections
+streamlit
