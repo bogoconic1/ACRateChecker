@@ -67,6 +67,7 @@ try:
     st.write(f"Difficulty: {difficulty}")
     st.write(f"Accepted %: {acceptance_rate}")
 except AssertionError:
+    print("test")
     pass
 except IndexError:
     st.write("Question number does not exist. Please re-check input")
