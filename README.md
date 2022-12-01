@@ -27,7 +27,7 @@ pip install streamlit
 
 Run the below command
 ```bash
-streamlit run SystemTestsPassed.py
+streamlit run main.py
 ```
 
 The following should show up in the terminal
