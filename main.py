@@ -11,8 +11,6 @@ import streamlit as st
 st.title("Codeforces question acceptance rate checker")
 question = st.text_input('Enter Question Number (for example 1715C)')
 
-with st.expander("Not sure how to figure out the question number ?"):
-    st.image("images/question number.png")
 #st.write(question)
 for i in range(len(question)-1):
     if question[i].isdigit() and not question[i+1].isdigit():
@@ -67,7 +65,6 @@ try:
     st.write(f"Difficulty: {difficulty}")
     st.write(f"Accepted %: {acceptance_rate}")
 except AssertionError:
-    print("test")
     pass
 except IndexError:
     st.write("Question number does not exist. Please re-check input")
