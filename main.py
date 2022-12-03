@@ -69,5 +69,6 @@ try:
 except AssertionError:
     pass
 except IndexError:
-    st.write("Question number does not exist. Please re-check input")
-    
+    st.write("Question number does not exist. Please re-check input")  
+except KeyError:
+    st.write("Question number does not exist. Please re-check input")  
