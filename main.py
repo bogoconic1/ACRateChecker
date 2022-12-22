@@ -1,3 +1,5 @@
 import streamlit as st
 
-st.title("Codeforces question acceptance rate checker")
+st.header("ACRateChecker")
+st.write("A tool to find the acceptance rate of a question during contests or practice")
+

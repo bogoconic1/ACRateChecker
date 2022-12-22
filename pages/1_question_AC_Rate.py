@@ -15,9 +15,8 @@ with open("name2id.json") as j:
 with open("name2probs.json") as j:
     name2probs = json.load(j)
 
-name2probs["Select Contest"] = ""
+name2probs["Select Contest"] = []
 name2id["Select Contest"] = -1
-st.title("Codeforces question acceptance rate checker")
 
 contest_name = st.selectbox(
     'Select Contest',
@@ -27,10 +26,10 @@ contest = name2id[contest_name]
 
 question = st.selectbox(
     'Select Question',
-    name2probs[contest_name])
+    ["Select Question"] + name2probs[contest_name])
   
 try:
-    assert contest_name != "Select Contest"
+    assert question != "Select Question"
     question_idx = question.split("-")[0][:-1]
     page = "https://codeforces.com/api/contest.status?contestId=" + str(contest) + "&from=1"
     st.write(f'Fetching statistics...')
@@ -44,11 +43,17 @@ try:
 
     total_subs = len(cf_dataframe[cf_dataframe["problem.index"] == question_idx])
     total_accepted = len(cf_dataframe[(cf_dataframe["problem.index"] == question_idx) & (cf_dataframe["verdict"] == "OK")])
-    st.write(f'=============== Total ===============')
-    st.write(f'Accepted: {total_accepted:,}')
-    st.write(f'Submissions: {total_subs:,}')
-    st.write(f'Accepted %: {round((total_accepted/total_subs)*100):,}')
-    st.write()
+    st.markdown('**Total**')
+    total = []
+    total.append(['Accepted', f'{total_accepted:,}'])
+    total.append(['Submissions', f'{total_subs:,}'])
+    total.append(['Accepted %', f'{round((total_accepted/total_subs)*100):,}'])
+    total = pd.DataFrame(total)
+    style = total.style.hide_index()
+    style.hide_columns()
+    st.write(style.to_html(), unsafe_allow_html=True)
+    st.write("\n")
+    st.write("\n")
     
     selected_contest = cf_duration_dataframe.loc[cf_duration_dataframe["id"] == int(contest)]
     start_time = list(selected_contest["startTimeSeconds"])[0]
@@ -68,13 +73,20 @@ try:
     except:
         difficulty = "Not released yet"
     acceptance_rate = round((total_solved / total_attempted) * 100)
-    st.write("=============== During Contest ===============")
-    st.write(f"User Accepted: {user_solved:,}")
-    st.write(f"User Tried: {user_attempted:,}")
-    st.write(f"Total Accepted: {total_solved:,}")
-    st.write(f"Total Submissions: {total_attempted:,}")
-    st.write(f"Difficulty: {difficulty}")
-    st.write(f"Accepted %: {acceptance_rate}")
+    
+    st.markdown('**During Contest**')
+    dur_contest = []
+    dur_contest.append(["User Accepted",  f'{user_solved:,}'])
+    dur_contest.append(["User Tried",  f'{user_attempted:,}'])
+    dur_contest.append(["Total Accepted",  f'{total_solved:,}'])
+    dur_contest.append(["Total Submissions",  f'{total_attempted:,}'])
+    dur_contest.append(["Difficulty",  f'{difficulty}'])
+    dur_contest.append(["Accepted %",  f'{acceptance_rate}'])
+    dur_contest = pd.DataFrame(dur_contest)
+    style = dur_contest.style.hide_index()
+    style.hide_columns()
+    st.write(style.to_html(), unsafe_allow_html=True)
+    
 except AssertionError:
     pass
 except IndexError:
