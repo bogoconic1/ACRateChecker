@@ -20,7 +20,7 @@ Streamlit is required to open the tool in a web browser.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install streamlit.
 
 ```bash
-pip install streamlit
+pip install -r requirements.txt
 ```
 
 # Usage
