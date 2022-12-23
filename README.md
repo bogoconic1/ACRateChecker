@@ -66,6 +66,7 @@ Step 2: Drag the slider to to find the acceptance rate at a specific time in the
 ![image](https://user-images.githubusercontent.com/100673850/209147480-bc0bf1a6-9d5d-4186-9fa2-b1d4c4af6c61.png)
 
 **Improvements**
+
 Verdict classifier by language
 - will be useful when comes to (i.e checking python solutions give runtime error when you are thinking to use recursion - dfs)
 
