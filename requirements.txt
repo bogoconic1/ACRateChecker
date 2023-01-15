@@ -4,3 +4,4 @@ numpy
 requests
 pandasql
 streamlit
+streamlit-extras
