@@ -42,17 +42,26 @@ You can now view your Streamlit app in your browser.
 # The Interface
 
 The main page will be shown when the URL is opened
-![image](https://user-images.githubusercontent.com/100673850/200307825-dd4b37cc-3520-4541-a1ba-8ee643da7701.png)
+![image](https://user-images.githubusercontent.com/100673850/209146368-48942d7d-e5c0-4a4e-9a73-34bd1651d0b3.png)
 
-In the case when the user **does not** know how to find the question number, an example is shown by clicking on
-![image](https://user-images.githubusercontent.com/100673850/200307982-f0b0c654-6b88-40aa-9ec4-86e9fbdcc58c.png)
+**Function 1: Find the acceptance rate of a question**
+![image](https://user-images.githubusercontent.com/100673850/209146554-fcec621b-ee81-4735-9aff-8a4a0c6d7dab.png)
 
-A **sample** on how to figure out the question number will be shown
-![image](https://user-images.githubusercontent.com/100673850/200308349-33c122e5-781b-4a79-a00e-b7813a61b584.png)
+Step 1: Choose a contest
+![image](https://user-images.githubusercontent.com/100673850/209146765-d8079c18-8895-412a-80bd-edd801c85988.png)
 
-User enters a question (in this case 1750A) and **press ENTER**
-![image](https://user-images.githubusercontent.com/100673850/200307566-c8c8632c-6238-45d5-ae3a-7bf60cb586ac.png)
+Step 2: Choose a question
+![image](https://user-images.githubusercontent.com/100673850/209146904-35135df0-15d0-4232-90e0-32da3f60e3dd.png)
 
-After approximately **10-15 seconds**, output is shown
-![image](https://user-images.githubusercontent.com/100673850/200307659-8159d8be-0b5a-4bee-8e54-0e922686f128.png)
+Within **15 seconds**, output is shown
+![image](https://user-images.githubusercontent.com/100673850/209147047-794c4514-6ab1-439c-89e2-23ff13bbafc4.png)
+
+**Function 2: Track contest acceptance rate across time**
+![image](https://user-images.githubusercontent.com/100673850/209147188-9b167e22-c590-4c86-8912-55de0741161c.png)
+
+Step 1: Choose a contest
+![image](https://user-images.githubusercontent.com/100673850/209147346-8c32d7ab-4265-4091-b4b2-a296dbb99885.png)
+
+Step 2: Drag the slider to to find the acceptance rate at a specific time in the contest
+![image](https://user-images.githubusercontent.com/100673850/209147480-bc0bf1a6-9d5d-4186-9fa2-b1d4c4af6c61.png)
 

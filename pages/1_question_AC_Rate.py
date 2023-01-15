@@ -3,10 +3,11 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
-from pandasql import sqldf
 import json
 from collections import defaultdict
 import streamlit as st
+
+st.header("**AC Rate of a Codeforces Problem**")
 
 #read json files
 with open("name2id.json") as j:
@@ -25,11 +26,10 @@ contest_name = st.selectbox(
 contest = name2id[contest_name]
 
 question = st.selectbox(
-    'Select Question',
-    ["Select Question"] + name2probs[contest_name])
+    'Select Problem',
+    ["Select Problem"] + name2probs[contest_name])
   
-try:
-    assert question != "Select Question"
+if question != "Select Problem":
     question_idx = question.split("-")[0][:-1]
     page = "https://codeforces.com/api/contest.status?contestId=" + str(contest) + "&from=1"
     st.write(f'Fetching statistics...')
@@ -87,9 +87,9 @@ try:
     style.hide_columns()
     st.write(style.to_html(), unsafe_allow_html=True)
     
-except AssertionError:
-    pass
-except IndexError:
-    st.write("Question number does not exist. Please re-check input")  
-except KeyError:
-    st.write("Question number does not exist. Please re-check input")  
+#except AssertionError:
+#    pass
+#except IndexError:
+#    st.write("Question number does not exist. Please re-check input")  
+#except KeyError:
+#    st.write("Question number does not exist. Please re-check input")  
