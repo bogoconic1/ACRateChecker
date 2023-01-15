@@ -20,7 +20,7 @@ Streamlit is required to open the tool in a web browser.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install streamlit.
 
 ```bash
-pip install streamlit
+pip install -r requirements.txt
 ```
 
 # Usage
@@ -64,4 +64,6 @@ Step 1: Choose a contest
 
 Step 2: Drag the slider to to find the acceptance rate at a specific time in the contest
 ![image](https://user-images.githubusercontent.com/100673850/209147480-bc0bf1a6-9d5d-4186-9fa2-b1d4c4af6c61.png)
+
+
 
