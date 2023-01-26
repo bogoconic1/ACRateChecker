@@ -6,6 +6,9 @@ ACRateChecker is a web-based data analytics solution to help users find the over
 
 During a codeforces live/virtual contest, many contestants occasionally look at the submission verdicts to a problem for various reasons (such as deciding the language to use etc). Submission verdicts are public to the contestant, and for the user to view the submission verdicts, they have to click on Status and key in the problem and language in the drop down boxes. Even by doing that, the search results can retrieve thousands of records that will be difficult to analyze under contest pressure
 
+![image](https://user-images.githubusercontent.com/100673850/214788853-31e13002-b6e3-44f1-af6a-8bc12a37aee3.png)
+
+
 An example:
 ![image](https://user-images.githubusercontent.com/100673850/214785248-08d6bb62-78e6-4e79-adfb-6d48fe8a8603.png)
 
