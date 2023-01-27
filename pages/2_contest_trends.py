@@ -7,6 +7,8 @@ import json
 from collections import defaultdict
 import streamlit as st
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 @st.cache(show_spinner=False)
 def get_contest_snapshots(contest):
     page = "https://codeforces.com/api/contest.status?contestId=" + str(contest) + "&from=1"
@@ -50,8 +52,12 @@ contest_name = st.selectbox(
     'Select Contest',
     ["Select Contest"] + list(name2probs.keys()))
 
-if contest_name != "Select Contest":
-    contest = name2id[contest_name]
+contest = st.text_input("Cannot find contest? Key in the contest id here", "Enter Contest ID")
+
+if contest_name != "Select Contest" or contest != "Enter Contest ID":
+    
+    if contest_name in name2id:
+        contest = name2id[contest_name]
 
     cf_dataframe, selected_contest, start_time, duration = get_contest_snapshots(contest)
     minutes_after_start = st.slider('Minutes after contest started', 0, duration // 60, duration // 60)
@@ -102,32 +108,53 @@ if contest_name != "Select Contest":
                             ["Select Language"] + prog_langs)
         
         
-    if selected_problem != 'Select Problem' and selected_language != 'Select Language':
-        compressed_df = cf_dataframe[(cf_dataframe.programmingLanguage == selected_language) & \
-            (cf_dataframe["problem.index"] == selected_problem) & (cf_dataframe["creationTimeSeconds"] <= end_time)]
-        compressed_df["temp"] = compressed_df["verdict"].apply(lambda x: x.capitalize().replace("_", " ").replace("Ok", "Accepted"))
-        compressed_df["passedTestCount"] += 1
-        compressed_df["passedTestCount"] = compressed_df["passedTestCount"].astype(str)
-        verdicts_with_test_no = ["Wrong answer", "Time limit exceeded", "Memory limit exceeded", "Idleness limit exceeded", "Runtime error"]
-        conditions = [compressed_df["temp"] == "Wrong answer",
-                    compressed_df["temp"] == "Time limit exceeded", \
-                    compressed_df["temp"] == "Memory limit exceeded", \
-                    compressed_df["temp"] == "Idleness limit exceeded", \
-                    compressed_df["temp"] == "Runtime error"]
-        choices = [compressed_df["temp"] + " on test " + compressed_df["passedTestCount"], \
-                compressed_df["temp"] + " on test " + compressed_df["passedTestCount"], \
-                compressed_df["temp"] + " on test " + compressed_df["passedTestCount"],\
-                compressed_df["temp"] + " on test " + compressed_df["passedTestCount"],\
-                compressed_df["temp"] + " on test " + compressed_df["passedTestCount"]]
-        compressed_df["final_verdict"] = np.select(conditions, choices, default = compressed_df["temp"])
-        
-        v_counts = compressed_df["final_verdict"].value_counts()
-        verdict = []
-        for x in v_counts.keys():
-            verdict.append((x,v_counts[x]))
-        verdict_df = pd.DataFrame(verdict, columns = ["Verdict", "Submissions"])
-        write_dataframe(verdict_df)
-        
+    charts1, charts2 = st.columns(2)
+    compressed_df = None
+    with charts1:
+        if selected_problem != 'Select Problem' and selected_language != 'Select Language':
+            compressed_df = cf_dataframe[(cf_dataframe.programmingLanguage == selected_language) & \
+                (cf_dataframe["problem.index"] == selected_problem) & (cf_dataframe["creationTimeSeconds"] <= end_time)]
+            compressed_df["temp"] = compressed_df["verdict"].apply(lambda x: x.capitalize().replace("_", " ").replace("Ok", "Accepted"))
+            compressed_df["passedTestCount"] += 1
+            compressed_df["passedTestCount"] = compressed_df["passedTestCount"].astype(str)
+            verdicts_with_test_no = ["Wrong answer", "Time limit exceeded", "Memory limit exceeded", "Idleness limit exceeded", "Runtime error"]
+            conditions = [compressed_df["temp"] == "Wrong answer",
+                        compressed_df["temp"] == "Time limit exceeded", \
+                        compressed_df["temp"] == "Memory limit exceeded", \
+                        compressed_df["temp"] == "Idleness limit exceeded", \
+                        compressed_df["temp"] == "Runtime error"]
+            choices = [compressed_df["temp"] + " on test " + compressed_df["passedTestCount"], \
+                    compressed_df["temp"] + " on test " + compressed_df["passedTestCount"], \
+                    compressed_df["temp"] + " on test " + compressed_df["passedTestCount"],\
+                    compressed_df["temp"] + " on test " + compressed_df["passedTestCount"],\
+                    compressed_df["temp"] + " on test " + compressed_df["passedTestCount"]]
+            compressed_df["final_verdict"] = np.select(conditions, choices, default = compressed_df["temp"])
+            
+            v_counts = compressed_df["final_verdict"].value_counts()
+            verdict = []
+            for x in v_counts.keys():
+                verdict.append((x,v_counts[x]))
+            verdict_df = pd.DataFrame(verdict, columns = ["Verdict", "Submissions"])
+            write_dataframe(verdict_df)
+            
+    with charts2:
+        if compressed_df is not None:
+            runtime_df = compressed_df[compressed_df["final_verdict"] == "Accepted"]\
+                [["timeConsumedMillis", "memoryConsumedBytes"]]
+                
+            runtime_df = runtime_df.rename(columns = {"timeConsumedMillis": "Time(ms)"})
+            runtime_df["Memory(KB)"] = runtime_df["memoryConsumedBytes"] // 1000
+            
+            tl = runtime_df[["Time(ms)"]]
+            ml = runtime_df[["Memory(KB)"]]
+            
+            tl.hist()
+            plt.show()
+            st.pyplot()
+            
+            ml.hist()
+            plt.show()
+            st.pyplot()
         
     
     
