@@ -53,7 +53,7 @@ You can now view your Streamlit app in your browser.
   
 ```
 
-#Some screenshots of ACRateChecker
+# Some screenshots of ACRateChecker
 
 ![image](https://user-images.githubusercontent.com/100673850/215093277-51dcda52-87ca-4054-8134-c182d9bfc9a7.png)
 ![image](https://user-images.githubusercontent.com/100673850/215093344-c4638958-29be-4e19-af82-efaf0a3f9ad0.png)
