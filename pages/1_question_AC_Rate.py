@@ -15,7 +15,8 @@ with open("name2id.json") as j:
     
 with open("name2probs.json") as j:
     name2probs = json.load(j)
-
+    
+    
 name2probs["Select Contest"] = []
 name2id["Select Contest"] = -1
 
