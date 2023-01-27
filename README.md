@@ -53,4 +53,9 @@ You can now view your Streamlit app in your browser.
   
 ```
 
-A live demo of the tool can be found at (video link)
+#Some screenshots of ACRateChecker
+
+![image](https://user-images.githubusercontent.com/100673850/215093277-51dcda52-87ca-4054-8134-c182d9bfc9a7.png)
+![image](https://user-images.githubusercontent.com/100673850/215093344-c4638958-29be-4e19-af82-efaf0a3f9ad0.png)
+![image](https://user-images.githubusercontent.com/100673850/215093363-db125e57-084d-47ad-94c7-08c76c651c6a.png)
+
