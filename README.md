@@ -1,6 +1,6 @@
 # ACRateChecker
 
-ACRateChecker is a web-based data analytics solution to help users find the overall acceptance and contest acceptance rate of any codeforces problem.
+ACRateChecker is a web-based data analytics solution to help users find the overall acceptance and contest acceptance rate of any codeforces problem, added on with a verdict classifier for contests
 
 # Problem Statement
 
