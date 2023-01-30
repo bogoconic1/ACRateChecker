@@ -1,5 +1,7 @@
 # ACRateChecker
 
+https://bogoconic1-acratechecker-main-fddjqv.streamlit.app/
+
 ACRateChecker is a web-based data analytics solution to help users find the overall acceptance and contest acceptance rate of any codeforces problem, added on with a verdict classifier for contests
 
 # Problem Statement
@@ -27,10 +29,6 @@ Using this tool during a live contest, will NOT cause the contestants to violate
 - Streamlit [https://streamlit.io/]
 - Pandas
 - Python 
-
-# Usage
-
-The application can be accessed by the link https://bogoconic1-acratechecker-main-fddjqv.streamlit.app/
 
 
 # Some screenshots of ACRateChecker
