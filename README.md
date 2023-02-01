@@ -1,6 +1,8 @@
 # ACRateChecker
 
-ACRateChecker is a web-based data analytics solution to help users find the overall acceptance and contest acceptance rate of any codeforces problem.
+https://bogoconic1-acratechecker-main-fddjqv.streamlit.app/
+
+ACRateChecker is a web-based data analytics solution to help users find the overall acceptance and contest acceptance rate of any codeforces problem, added on with a verdict classifier for contests
 
 # Problem Statement
 
@@ -28,29 +30,10 @@ Using this tool during a live contest, will NOT cause the contestants to violate
 - Pandas
 - Python 
 
-# Requirements and Installation
 
-Streamlit is required to open the tool in a web browser. (to be improved)
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install streamlit.
+# Some screenshots of ACRateChecker
 
-```bash
-pip install -r requirements.txt
-```
+![image](https://user-images.githubusercontent.com/100673850/215093277-51dcda52-87ca-4054-8134-c182d9bfc9a7.png)
+![image](https://user-images.githubusercontent.com/100673850/215093344-c4638958-29be-4e19-af82-efaf0a3f9ad0.png)
+![image](https://user-images.githubusercontent.com/100673850/215093363-db125e57-084d-47ad-94c7-08c76c651c6a.png)
 
-# Usage
-
-Run the below command
-```bash
-streamlit run main.py
-```
-
-The following should show up in the terminal
-```
-You can now view your Streamlit app in your browser.
-
-  Local URL: http://localhost:8501
-  Network URL: (in this format) http://xxx.xxx.xxx.xxx:8501 
-  
-```
-
-A live demo of the tool can be found at (video link)

@@ -9,7 +9,7 @@ import streamlit as st
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-@st.cache(show_spinner=False)
+@st.cache(show_spinner=False, ttl=300)
 def get_contest_snapshots(contest):
     page = "https://codeforces.com/api/contest.status?contestId=" + str(contest) + "&from=1"
     cf_submissions_api = requests.get(page)
