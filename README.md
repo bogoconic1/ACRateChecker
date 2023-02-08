@@ -6,7 +6,7 @@ ACRateChecker is a web-based data analytics solution to help users find the over
 
 # Problem Statement
 
-During a codeforces live/virtual contest, many contestants occasionally look at the submission verdicts to a problem for various reasons (such as deciding the language to use etc). 
+During a codeforces virtual contest, many contestants occasionally look at the submission verdicts to a problem for various reasons (such as deciding the language to use etc). 
 
 Submission **verdicts** are public to the contestant, and for the user to view the submission verdicts, they have to click on Status and key in the problem and language in the drop down boxes. Even by doing that, the search results can retrieve thousands of records that will be difficult to analyze under contest pressure
 
@@ -19,9 +19,7 @@ An example:
 
 The large runtime (extremely close to the time limit) (Figure 2) of these submissions in the python language, accompanied with the vast majority of solutions having "Time limit exceeded on pretest 3" could imply that the problem is extremely difficult to pass in python and as such the user may use C++ without wasting time writing a python solution which has high chances of getting time limit exceeded.
 
-This tool aims to provide a live summary of the verdicts in the "Status" tab which is public and can be viewed in the contest (see Figure 1).
-
-Using this tool during a live contest, will NOT cause the contestants to violate contest rules in any way. 
+The "Contest Snapshots" function aims to provide a live summary of the verdicts in the "Status" tab which is public and can be viewed in the contest (see Figure 1).
 
 
 # Built with
