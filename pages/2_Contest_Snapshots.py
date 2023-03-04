@@ -52,9 +52,8 @@ contest_name = st.selectbox(
     'Select Contest',
     ["Select Contest"] + list(name2probs.keys()))
 
-contest = st.text_input("Cannot find contest? Key in the contest id here", "Enter Contest ID")
 
-if contest_name != "Select Contest" or contest != "Enter Contest ID":
+if contest_name != "Select Contest":
     
     if contest_name in name2id:
         contest = name2id[contest_name]
