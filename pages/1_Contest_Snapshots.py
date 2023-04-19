@@ -28,8 +28,8 @@ def get_contest_snapshots(contest):
 
 def write_dataframe(df):
     
-    style = df.style.hide_index()
-    style.hide_columns()
+    style = df.style.hide(axis = "index")
+    #style.hide_columns()
     st.write(style.to_html(), unsafe_allow_html=True)
     st.write("\n")
     st.write("\n")
@@ -77,7 +77,7 @@ if contest_name != "Select Contest":
         if len(index_to_name) == len(problems):
             break
         
-    dur_contest = [["Problem", "User Accepted", "User Tried", "Total Accepted", "Total Submissions", "Accepted %"]]
+    dur_contest = []
     for pindex in problems:
         solved_df = byTimeMemory[(byTimeMemory["problem_index"] == pindex) & (byTimeMemory["verdict"] == "OK")]
         attempted_df = byTimeMemory[(byTimeMemory["problem_index"] == pindex)]
@@ -88,7 +88,7 @@ if contest_name != "Select Contest":
         acceptance_rate = round(((total_solved / total_attempted) * 100),2)
         dur_contest.append([f'{pindex}. {index_to_name[pindex]}', f'{user_solved:,}', f'{user_attempted:,}' \
             , f'{total_solved:,}', f'{total_attempted:,}', f'{acceptance_rate}'])
-    dur_contest = pd.DataFrame(dur_contest)
+    dur_contest = pd.DataFrame(dur_contest, columns = ["Problem", "User Accepted", "User Tried", "Total Accepted", "Total Submissions", "Accepted %"])
     write_dataframe(dur_contest)
     
     st.markdown("Verdict Snapshot Visualiser")
@@ -104,15 +104,19 @@ if contest_name != "Select Contest":
         prog_langs = sorted(list(set(cf_dataframe.programmingLanguage)))
         selected_language = st.selectbox(
                             'Select Language',
-                            ["Select Language"] + prog_langs)
+                            ["Select Language"] + ["All Languages"] + prog_langs)
         
         
     charts1, charts2 = st.columns(2)
     compressed_df = None
     with charts1:
         if selected_problem != 'Select Problem' and selected_language != 'Select Language':
-            compressed_df = cf_dataframe[(cf_dataframe.programmingLanguage == selected_language) & \
-                (cf_dataframe["problem.index"] == selected_problem) & (cf_dataframe["creationTimeSeconds"] <= end_time)]
+            
+            if selected_language == "All Languages":
+                compressed_df = cf_dataframe[(cf_dataframe["problem.index"] == selected_problem) & (cf_dataframe["creationTimeSeconds"] <= end_time)]
+            else:
+                compressed_df = cf_dataframe[(cf_dataframe.programmingLanguage == selected_language) & \
+                                (cf_dataframe["problem.index"] == selected_problem) & (cf_dataframe["creationTimeSeconds"] <= end_time)]
             compressed_df["temp"] = compressed_df["verdict"].apply(lambda x: x.capitalize().replace("_", " ").replace("Ok", "Accepted"))
             compressed_df["passedTestCount"] += 1
             compressed_df["passedTestCount"] = compressed_df["passedTestCount"].astype(str)
