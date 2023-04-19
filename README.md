@@ -1,6 +1,6 @@
 # ACRateChecker
 
-ACRateChecker is a web-based data analytics solution to help users find the acceptance rate for contest problems across time, added on with a verdict classifier for contest submissions.
+ACRateChecker is a web-based data analytics solution to help users find the acceptance rate for contest problems across time (**"Contest Snapshot Visualizer"**), added on with a verdict classifier for contest submissions.
 
 # Problem Statement
 
