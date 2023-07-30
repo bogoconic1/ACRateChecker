@@ -9,7 +9,7 @@ import requests
 import json
 from collections import defaultdict
 import streamlit as st
-import stqdm
+from stqdm import stqdm
 
 colored_header(
     label="ACRateChecker",
@@ -19,20 +19,22 @@ colored_header(
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-@st.cache(show_spinner=False)
+@st.cache_data(show_spinner = False)
 def get_contest_snapshots(contest):
-    page = "https://codeforces.com/api/contest.status?contestId=" + str(contest) + "&from=1"
-    cf_submissions_api = requests.get(page)
-    submissions = cf_submissions_api.json()
-    cf_dataframe = pd.json_normalize(submissions,['result'])
     
-    cf_duration_api = requests.get("https://codeforces.com/api/contest.list?gym=false")
-    contests = cf_duration_api.json()
-    cf_duration_dataframe = pd.json_normalize(contests,['result'])
-    
-    selected_contest = cf_duration_dataframe.loc[cf_duration_dataframe["id"] == int(contest)]
-    start_time = list(selected_contest["startTimeSeconds"])[0]
-    duration = list(selected_contest["durationSeconds"])[0]
+    for _ in stqdm(range(1), desc = "Fetching data"):
+        page = "https://codeforces.com/api/contest.status?contestId=" + str(contest) + "&from=1"
+        cf_submissions_api = requests.get(page)
+        submissions = cf_submissions_api.json()
+        cf_dataframe = pd.json_normalize(submissions,['result'])
+        
+        cf_duration_api = requests.get("https://codeforces.com/api/contest.list?gym=false")
+        contests = cf_duration_api.json()
+        cf_duration_dataframe = pd.json_normalize(contests,['result'])
+        
+        selected_contest = cf_duration_dataframe.loc[cf_duration_dataframe["id"] == int(contest)]
+        start_time = list(selected_contest["startTimeSeconds"])[0]
+        duration = list(selected_contest["durationSeconds"])[0]
 
     return cf_dataframe, selected_contest, start_time, duration
 
@@ -86,7 +88,8 @@ if contest_name != "Select Contest":
             break
         
     dur_contest = []
-    for pindex in problems:
+    for i in stqdm(range(len(problems)), desc = "Calculating AC rates"):
+        pindex = problems[i]
         solved_df = byTimeMemory[(byTimeMemory["problem_index"] == pindex) & (byTimeMemory["verdict"] == "OK")]
         attempted_df = byTimeMemory[(byTimeMemory["problem_index"] == pindex)]
         user_solved = len(set([x[0]["handle"] for x in list(solved_df["author_members"])]))
@@ -177,7 +180,7 @@ if contest_name != "Select Contest":
 
         # Customize the plot
         fig.update_layout(
-            title='Memory Used (KB)',
+            title='Memory Distribution (KB)',
             xaxis_title='Memory Used (KB)',
             yaxis_title='Frequency (Log Scale)',
             bargap=0.1,  # Adjust the gap between bars
