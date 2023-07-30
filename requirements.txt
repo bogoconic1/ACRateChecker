@@ -2,6 +2,7 @@ pandas
 matplotlib
 numpy
 requests
-pandasql
 streamlit
 streamlit-extras
+stqdm
+plotly
